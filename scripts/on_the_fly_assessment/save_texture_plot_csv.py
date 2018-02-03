@@ -36,10 +36,10 @@ def save_texture_plot_csv(Q, chi, cake, imageFilename, save_path):
     plt.xlabel('Q')
     plt.ylabel('Texture')
     #plt.xlim((0.7, 6.4))
-    plt.savefig(os.path.join(save_path, imageFilename[:-4] + '_texture'))
+    plt.savefig(os.path.join(save_path, os.path.splitext(imageFilename)[0] + '_texture'))
     plt.close()
     
     data = np.concatenate(([Qlist_texture], [texture]))
-    np.savetxt(os.path.join(save_path, imageFilename[:-4]+'_texture.csv'), data.T, delimiter=',')
+    np.savetxt(os.path.join(save_path, os.path.splitext(imageFilename)[0]+'_texture.csv'), data.T, delimiter=',')
 
     return Qlist_texture, texture

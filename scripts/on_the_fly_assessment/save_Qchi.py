@@ -13,7 +13,7 @@ import os.path
 import scipy.io
 
 def save_Qchi(Q, chi, cake, imageFilename, save_path):
-    scipy.io.savemat(os.path.join(save_path, imageFilename[:-4]+'_Qchi.mat'), {'Q':Q, 'chi':chi, 'cake':cake})
+    scipy.io.savemat(os.path.join(save_path, os.path.splitext(imageFilename)[0]+'_Qchi.mat'), {'Q':Q, 'chi':chi, 'cake':cake})
     Q, chi = np.meshgrid(Q, chi)
     plt.figure(1)
     plt.title('Q-chi polarization corrected_log scale')
@@ -28,7 +28,7 @@ def save_Qchi(Q, chi, cake, imageFilename, save_path):
     plt.clim(scipy.stats.scoreatpercentile(np.log(cake[inds]), 5),
              scipy.stats.scoreatpercentile(np.log(cake[inds]), 95))
     plt.colorbar()
-    plt.savefig(os.path.join(save_path, imageFilename[:-4]+'_gamma'))
+    plt.savefig(os.path.join(save_path, os.path.splitext(imageFilename)[0]+'_gamma'))
 
     
     plt.close()

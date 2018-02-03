@@ -2,7 +2,8 @@
 """
 Created on Mon Jun 13
 
-@author: fangren
+@author: fangren, Robert Tang-Kong
+@version: 1.1
 
 """
 
@@ -29,7 +30,7 @@ from extract_signal_to_noise_ratio import extract_SNR
 def file_index(index):
     """
     formatting the index of each file to make it into a four digit string
-    for example, if the index is 1, it will beoomes '0001'. If the index is 100, it will become '0100'
+    for example, if the index is 1, it will beoomes '0001'. '100' -> '0100'
     """
     if len(str(index)) == 1:
         return '000' + str(index)
@@ -49,7 +50,8 @@ def on_the_fly(folder_path, base_filename, index, last_scan, calibration_file, P
                attribute4=[['scan#', 'neighbor_distance']],
                attribute5= [['scan#', 'SNR']]):
     """
-    run when starting to collect XRD images, and finish when finishing measuring the whole library
+    run when starting to collect XRD images, and finish when 
+    finishing measuring the whole library
     """
     # generate a folder to put processed files
     save_path = os.path.join(folder_path, 'Processed')
@@ -65,6 +67,7 @@ def on_the_fly(folder_path, base_filename, index, last_scan, calibration_file, P
     # generate a random series of numbers, in case restart the measurement from the middle, the new master file will not overwrite the previous one
     master_index = str(int(random.random() * 100000000))
 
+    print('Rot={0}, tilt={1}, d={2}'.format(Rot, tilt, d))
     while (index <= last_scan):
         imageFilename = base_filename + file_index(index) + '.tif'
         imageFullname = os.path.join(folder_path, imageFilename)
