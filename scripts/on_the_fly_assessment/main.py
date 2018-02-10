@@ -15,16 +15,16 @@ pixelSize = 79  # detector pixel size, measured in microns
 # folder and file info 
 ###############################################################################
 # specify the file path for the WxDiff calibration file
-calibration_file = os.path.expanduser('~/img/calib/ta_align17_scan62_0000.raw.calib')
+calibration_file = os.path.expanduser('~/data/bl10-2/Jan2018/LaB6_13k_th2p0_5sr.calib')
 # calibration_file = 'sample_data/LaB6.calib'
 
 # specify a folder for the software to watch
-folder_path = os.path.expanduser('~/img/LaB6_10-2/')  
+folder_path = os.path.expanduser('~/data/bl10-2/Jan2018/')  
 # folder_path = 'sample_data/' 
 
 # in order for the program to recognize newly created files
 # file needs to have the same basefile, index increments by 1 for each new file.
-base_filename = 'ta_align17_scan62_'
+base_filename = 'ta_LaB6_rpy1_13K_th2p0_fil0_5sr_scan1_'
 # base_filename = 'SampleB2_19_24x24_t30_'
 
  
@@ -34,7 +34,7 @@ base_filename = 'ta_align17_scan62_'
 # Index number, will be padded to 4 characters
 index = 0  
 # end with this scan. if unsure use large number
-last_scan = 0  
+last_scan = 2  
 # the number of samples in a row. Required if using nearest-neighbor distance module
 num_of_smpls_per_row = 25 
 

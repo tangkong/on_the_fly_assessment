@@ -69,7 +69,7 @@ def on_the_fly(folder_path, base_filename, index, last_scan, calibration_file, P
 
     print('Rot={0}, tilt={1}, d={2}'.format(Rot, tilt, d))
     while (index <= last_scan):
-        imageFilename = base_filename + file_index(index) + '.tif'
+        imageFilename = base_filename + file_index(index) + '.raw'
         imageFullname = os.path.join(folder_path, imageFilename)
         print("\r")
         # wait until an image is created, and process the previous image, to avoid crashing
