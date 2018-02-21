@@ -6,6 +6,8 @@ Created on Nov 17 2016, last updated 2/28/17
 
 from on_the_fly import on_the_fly
 import os
+import glob
+from os.path import basename
 
 # PP: beam polarization, according to beamline setup. 
 # Contact beamline scientist for this number
@@ -19,7 +21,7 @@ calibration_file = os.path.expanduser('~/data/bl10-2/Jan2018/LaB6_13k_th2p0_5sr.
 # calibration_file = 'sample_data/LaB6.calib'
 
 # specify a folder for the software to watch
-folder_path = os.path.expanduser('~/data/bl10-2/Jan2018/')  
+folder_path = os.path.expanduser('~/data/bl10-2/Jan2018/HiTp/data/Jae/J3_th4_19K/images/')  
 # folder_path = 'sample_data/' 
 
 # in order for the program to recognize newly created files
@@ -46,12 +48,21 @@ extract_texture_module = 'on'              # extract texture_sum from each spect
 extract_signal_to_noise_module = 'on'      # extract signal to noise ratio from each spectrum as a feature
 extract_neighbor_distance_module = 'off'   #  this module requires a master file that indicate the positions of the sample in physical space, it needs the input "num_of_smpls_per_row"
 add_feature_to_csv_module = 'on'  # if there is a master file, the feature will be added to the master file, otherwise, it will write a new file
-
+run_all_in_folder = True
 
 ###############################################################################
 # DO NOT CHANGE ANYTHING FROM HERE
 ###############################################################################
-on_the_fly(folder_path, base_filename, index, last_scan, calibration_file, PP,
+if run_all_in_folder:
+    for file in glob.glob(os.path.join(folder_path, '*.tiff')):
+        on_the_fly(folder_path, basename(file)[:-9], 
+            int(basename(file)[-9:-5]), int(basename(file)[-9:-5]), 
+            calibration_file, PP,
+            pixelSize, num_of_smpls_per_row, extract_Imax_Iave_ratio_module, 
+            extract_texture_module, extract_signal_to_noise_module,
+            extract_neighbor_distance_module, add_feature_to_csv_module)
+else:
+    on_the_fly(folder_path, base_filename, index, last_scan, calibration_file, PP,
             pixelSize, num_of_smpls_per_row, extract_Imax_Iave_ratio_module, 
             extract_texture_module, extract_signal_to_noise_module,
             extract_neighbor_distance_module, add_feature_to_csv_module)

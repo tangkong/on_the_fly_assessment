@@ -11,8 +11,9 @@ import os
 def load_image(imageFullname):
     # get extension to consider
     ext = os.path.splitext(imageFullname)[1]
-
-    if ext.lower() in ['.tif', 'tiff']:
+    print(imageFullname)
+    imArray = np.array([])
+    if ext.lower() in ['.tif', '.tiff']:
         # open tiff image
         im = fabio.open(imageFullname)
         # input image object into a numpy array
